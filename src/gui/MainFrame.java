@@ -88,8 +88,13 @@ public class MainFrame extends JFrame {
         btnLogin.setVisible(true);
     });
     
+    //adding new word
     
-    
+    btnNewAdd.addActionListener(e->{
+        if(!isLoggedIn) return;
+        AddWord addWord = new AddWord(this, (w,m) -> dic.add(w,m));
+        addWord.setVisible(true);
+    });
     
     }
 }
