@@ -66,5 +66,30 @@ public class MainFrame extends JFrame {
     
     tfSearch.addActionListener(btnSearch.getActionListeners()[0]); // while pressed enter it triggers search
     
+    //actionperformed for login/logout
+    btnLogin.addActionListener(e ->{
+        LoginDialog dlg = new LoginDialog(this);
+        dlg.setVisible(true);
+        if(dlg.isSuccess()){
+            isLoggedIn = true;
+            lblWelcome.setText("Welcome, " + dlg.getUsername());
+            btnLogin.setVisible(false);
+            btnLogout.setVisible(true);
+            btnNewAdd.setVisible(true);
+        }
+    });
+    
+    btnLogout.addActionListener(e->{
+        auth.AuthService.getInstance().logout();
+        isLoggedIn = false;
+        lblWelcome.setText("Guest");
+        btnNewAdd.setVisible(false);
+        btnLogout.setVisible(false);
+        btnLogin.setVisible(true);
+    });
+    
+    
+    
+    
     }
 }
